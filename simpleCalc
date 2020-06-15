@@ -1,0 +1,49 @@
+//https://www.learncpp.com/cpp-tutorial/chapter-4-summary-and-quiz/
+#include <iostream>
+
+using namespace std;
+
+double getInteger()
+{
+    std::cout << "Enter a double value: ";
+    double x {};
+    std::cin >> x;
+    return x;
+}
+
+char getOperator()
+{
+    std::cout << "Enter one of the following: +, -, * or /: \n";
+    char operation {};
+    std::cin >> operation;
+    return operation;
+}
+
+void printResults(double x, char operation, double y)
+{
+    if(operation == '+')
+    {
+        std::cout << x << " " << operation << " " << y << " is " << x+y << "\n";
+    }
+    else if(operation == '-')
+    {
+        std::cout << x << " " << operation << " " << y << " is " << x-y << "\n";
+    }
+    else if(operation == '*')
+    {
+        std::cout << y << " " << operation << " " << y << " is " << x*y << "\n";
+    }
+    else if(operation == '/')
+    {
+        std::cout << y << " " << operation << " " << y << " is " << x/y << "\n";
+    }
+}
+
+
+int main()
+{
+ int x {getInteger()};
+ int y {getInteger()};
+ char operation {getOperator()};
+ printResults(x, operation, y);
+}
