@@ -1,0 +1,90 @@
+//
+//  main.cpp
+//  structures
+//
+//  Created by patrik.nusszer on 2020. 06. 16..
+//  Copyright © 2020. patrik.nusszer. All rights reserved.
+//
+
+#include <iostream>
+
+template <typename T>
+class vector {
+private:
+    size_t capacity = 5;
+    T *ptr = nullptr;
+    size_t count = 0;
+    
+    void resize() {
+        ptr = (T*)realloc(ptr, sizeof(T) * (capacity *= 2));
+    }
+public:
+    int size() { return count; }
+    
+    vector () {
+        ptr = (T*)malloc(sizeof(T) * capacity);
+    }
+    
+    vector (int capacity) {
+        this->capacity = capacity;
+        ptr = (T*)malloc(sizeof(T) * capacity);
+    }
+    
+    T& operator[](size_t index) {
+        if (index >= count)
+            throw 1;
+        
+        return ptr[index];
+    }
+    
+    void push(T element) {
+        if (count == capacity)
+            resize();
+        ptr[count++] = element;
+    }
+    
+    void suffixShiftUp(size_t index) {
+        for (size_t i = index + 1; i < count; i++)
+            ptr[i - 1] = ptr[i];
+    }
+    
+    void removeAt(size_t index) {
+        if (index >= count)
+            throw 1;
+        suffixShiftUp(index);
+        count--;
+    }
+    
+    void suffixShiftDown(size_t index) {
+        for (size_t i = count; i > index; i--)
+            ptr[i] = ptr[i - 1];
+    }
+    
+    void insertAt(size_t index, T element) {
+        if (index > count)
+            throw 1;
+        if (index == capacity)
+            resize();
+        suffixShiftDown(index);
+        ptr[index] = element;
+        count++;
+    }
+    
+    void clear() {
+        count = 0;
+    }
+};
+
+int main(int argc, const char * argv[]) {
+    vector<int> vec(10);
+    vec.push(4);
+    vec.push(5);
+    vec.push(6);
+    vec.push(7);
+    vec.insertAt(1, 8);
+    vec.removeAt(3);
+    
+    for (size_t i = 0; i < vec.size(); i++)
+        std::cout << vec[i] << "\n";
+    return 0;
+}
