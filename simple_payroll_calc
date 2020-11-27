@@ -3,6 +3,7 @@
 
 int main()
 {
+    printf("====== ====== ==== ====== ======\n");
     printf("====== Payment calculator ======\n");
     printf("====== ====== ==== ====== ======\n");
     printf("How much hours do you work in a week?\n");
@@ -47,7 +48,7 @@ int main()
     printf("Your input is %d hours per week\n", hours);
     printf("Your weekly salary before tax is %.2f $\n", grossPay);
     printf("You worked %d hours overtime for this.\n", overtime);
-    printf("==========================================\n");
+    printf("====== ====== ==== ====== ======\n");
     printf("Your weekly salary after tax is %.2f $\n", netPay);
 
 
