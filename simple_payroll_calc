@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    printf("====== Payment calculator ======\n");
+    printf("====== ====== ==== ====== ======\n");
+    printf("How much hours do you work in a week?\n");
+
+    int hours;
+    int overtime;
+
+    double grossPay = 0.0;
+    double taxes = 0.0;
+
+    scanf("%d", &hours);
+
+    if(hours <= 40)
+    {
+        grossPay = hours * 12.00;
+    } else
+    {
+        overtime = hours - 40;
+        grossPay = (40 * 12) + (overtime * 18);
+    }
+
+    if(grossPay <= 300)
+    {
+        taxes = grossPay * 0.15;
+    }
+    else if(grossPay > 300 && grossPay < 450)
+    {
+        taxes = 300 * 0.15;
+        taxes += (grossPay - 300) * 0.20;
+    }
+    else if(grossPay > 450)
+    {
+        taxes = 300 * 0.15;
+        taxes += 150 * 0.20;
+        taxes += (grossPay - 450) * 0.25;
+
+    }
+
+    double netPay = grossPay - taxes;
+
+
+    printf("Your input is %d hours per week\n", hours);
+    printf("Your weekly salary before tax is %.2f $\n", grossPay);
+    printf("You worked %d hours overtime for this.\n", overtime);
+    printf("==========================================\n");
+    printf("Your weekly salary after tax is %.2f $\n", netPay);
+
+
+    return 0;
+}
