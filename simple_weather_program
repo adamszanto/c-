@@ -35,8 +35,19 @@ int main()
 
     printf("\The yearly average is %.1f inches.\n\n", total/YEARS);
 
+    printf("MONTHLY AVERAGES:\n\n");
+    printf(" Jan  Feb  Mar  Apr  May  Jun  Jul  Aug  Sep  Oct  Nov  Dec\n");
 
+    for(month = 0; month < MONTHS; month++)
+    {
+       for(year = 0, subtotal = 0; year < YEARS; year++)
+       {
+           subtotal += rain[year][month];
+       }
+       printf("%4.1f ", subtotal/YEARS);
+    }
 
+    printf("\n");
 
     return 0;
 }
